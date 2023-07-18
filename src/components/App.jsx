@@ -2,32 +2,35 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
 import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
+import searchYouTube from '../lib/searchYouTube.js';
+import Search from './Search.js';
 const { useState } = React;
 
 
-  /*
-  const changeVideo = (video) => {
-    console.log(video);
-    //useState({video: video});
-  };
-  */
-
-//var chosenVideo = video;
+searchYouTube('cats'); //
 
 var App = () => {
-
-
   const [mainVideo, setMainVideo] = useState(exampleVideoData[0]);
   const [videos, setVideos] = useState(exampleVideoData);
+  // const [userSearch, searchOptions] = useState(searchYouTube);
 
 
+  const handleSearch = (query) => {
+    searchYouTube(query, (data) => {
+      setVideos(data);
+      setMainVideo(data[0]); // Update the main video to the first video from search results
+    });
+  };
 
+
+  console.log('example Vids', videos);
   return (
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em> view goes here</h5></div>
+          <Search searchYouTube={handleSearch} />
         </div>
+
       </nav>
       <div className="row">
         <div className="col-md-7">
