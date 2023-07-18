@@ -1,7 +1,7 @@
-import exampleVideoData from '../data/exampleVideoData.js';
-
 // event handler
-var VideoListEntry = ({ video }) => {
+
+
+var VideoListEntry = ({video}) => {
   return (
     <div className="video-list-entry media">
       <div className="media-left media-middle">

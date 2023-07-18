@@ -1,22 +1,16 @@
 import VideoListEntry from './VideoListEntry.js';
-import VideoPlayer from './VideoPlayer.js';
-
-
+import exampleVideoData from '../data/exampleVideoData.js';
 
 var VideoList = ({videos}) => {
-
   return (
-
     <div className="video-list">
-      {videos.map((video) => (
-        <VideoListEntry video={video}/>
-
-      )
-
+      {exampleVideoData.map((video) =>
+        <VideoListEntry video={video}
+          key = {video.etag}/>
       )}
-
     </div>
   );
+};
 
 
   // <div className="video-list">
@@ -26,7 +20,7 @@ var VideoList = ({videos}) => {
   //   <div><h5><em>videoListEntry</em> view goes here</h5></div>
   //   <div><h5><em>videoListEntry</em> view goes here</h5></div>
   // </div>
-};
+
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
