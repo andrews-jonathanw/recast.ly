@@ -4,14 +4,14 @@ import VideoPlayer from './VideoPlayer.js';
 import VideoList from './VideoList.js';
 import searchYouTube from '../lib/searchYouTube.js';
 import Search from './Search.js';
-const { useState } = React;
+const { useState, useEffect } = React;
 
 
-searchYouTube('cats'); //
+//searchYouTube('cats'); //
 
 var App = () => {
-  const [mainVideo, setMainVideo] = useState(exampleVideoData[0]);
-  const [videos, setVideos] = useState(exampleVideoData);
+  const [mainVideo, setMainVideo] = useState({});
+  const [videos, setVideos] = useState([]);
   // const [userSearch, searchOptions] = useState(searchYouTube);
 
 
@@ -21,6 +21,12 @@ var App = () => {
       setMainVideo(data[0]); // Update the main video to the first video from search results
     });
   };
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    handleSearch('cats');
+
+  }, []);
 
 
   console.log('example Vids', videos);
