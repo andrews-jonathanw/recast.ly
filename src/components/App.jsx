@@ -5,8 +5,23 @@ import VideoList from './VideoList.js';
 const { useState } = React;
 
 
+  /*
+  const changeVideo = (video) => {
+    console.log(video);
+    //useState({video: video});
+  };
+  */
+
+//var chosenVideo = video;
+
 var App = () => {
-  const [video, setVideo] = useState(exampleVideoData[0]);
+
+
+  const [mainVideo, setMainVideo] = useState(exampleVideoData[0]);
+  const [videos, setVideos] = useState(exampleVideoData);
+
+
+
   return (
     <div>
       <nav className="navbar">
@@ -16,10 +31,10 @@ var App = () => {
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <VideoPlayer video={video}/>
+          <VideoPlayer mainVideo={mainVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList video={video} />
+          <VideoList videos={videos} setMainVideo={setMainVideo}/>
         </div>
       </div>
     </div>
