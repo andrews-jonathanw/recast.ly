@@ -13,20 +13,20 @@ var searchYouTube = (query, callback) => {
       key: YOUTUBE_API_KEY,
       q: query,
       part: 'snippet',
-      maxResults: 3,
+      maxResults: 5,
       type: 'video',
       videoEmbeddable: true,
     },
     success: function(data) {
       data = data.slice(0, 5);
-      console.log('Youtube vids', data);
+      //console.log('Youtube vids', data);
       callback(data);
       //callback(data.items);
     },
     error: function(data) {
       console.log('error!');
     },
-  });
+  }, 500);
 };
 
 export default searchYouTube;

@@ -12,8 +12,8 @@ const { useState, useEffect } = React;
 var App = () => {
   const [mainVideo, setMainVideo] = useState({});
   const [videos, setVideos] = useState([]);
-  // const [userSearch, searchOptions] = useState(searchYouTube);
 
+  //{ console.log(videos); }
 
   const handleSearch = (query) => {
     searchYouTube(query, (data) => {
@@ -29,7 +29,7 @@ var App = () => {
   }, []);
 
 
-  console.log('example Vids', videos);
+  //console.log('example Vids', videos);
   return (
     <div>
       <nav className="navbar">

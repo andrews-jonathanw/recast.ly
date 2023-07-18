@@ -1,20 +1,36 @@
-
-
-
+const { useState } = React;
+const white = '#ffffff';
+const blue = '#5252ab';
 var VideoPlayer = ({mainVideo}) => {
   if (mainVideo.id === undefined) {
     return <div className="video-player"></div>;
   }
+
+  // toggle button
+  const [play, setPlay] = useState(false);
+  const [color, toggleColor] = useState(white);
+
+  const toggleChecked = function() {
+    setPlay(value => !value);
+    const newColor = color === white ? blue : white;
+    toggleColor(color => newColor);
+  };
+  const url = play
+    ? `https://www.youtube.com/embed/${mainVideo.id.videoId}${'?autoplay=1'}`
+    : `https://www.youtube.com/embed/${mainVideo.id.videoId}`;
+  //${'?autoplay=1'}
+
   return (
     <div className="video-player">
-      {console.log('this is main video', mainVideo)}
       <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${mainVideo.id.videoId}`} allowFullScreen></iframe>
+        <iframe className="embed-responsive-item" src={url} allow="accelerometer; autoplay" allowFullScreen></iframe>
       </div>
       <div className="video-player-details">
         <h3>{mainVideo.snippet.title}</h3>
         <div>{mainVideo.snippet.description}</div>
       </div>
+      <div class="autoplay"><button style={{background: color}} class="toggle-button" type="button" onClick={() => toggleChecked()}>AutoPlay</button></div>
+      {console.log('value of play is: ', play)}
     </div>
   );
 };

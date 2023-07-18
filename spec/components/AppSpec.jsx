@@ -40,7 +40,7 @@ describe('App', function() {
     });
   });
 
-  xdescribe('when rendering live data from YouTube', function() {
+  describe('when rendering live data from YouTube', function() {
     beforeEach(function() {
       app = renderIntoDocument(
         <App />
@@ -54,6 +54,5 @@ describe('App', function() {
         expect(videoEntryTitle.innerHTML).to.equal(fakeVideoData[i].snippet.title)
       );
     });
-
   });
 });

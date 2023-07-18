@@ -1,20 +1,20 @@
 import searchYouTube from '../lib/searchYouTube.js';
 const { useState } = React;
 
-
-
-
 var Search = ({ searchYouTube }) => {
+  var debounceTimeout = null;
   const [term, setTerm] = useState('');
 
-  var handleSearch = () => {
-    searchYouTube(term);
+  var handleSearch = (query) => {
+    searchYouTube(query);
   };
-
   return (
     <div className="search-bar form-inline">
-      <input className="form-control" type="text" onChange={(event) => setTerm(event.target.value)} />
-      <button className="btn hidden-sm-down" onClick={() => handleSearch()}>
+      <input className="form-control" type="text" onChange={(event), function(event) {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(handleSearch(event.target.value), 500);
+      }} />
+      <button className="btn hidden-sm-down" onClick={() => setTerm(event.target.value)}>
         <span className="glyphicon glyphicon-search"></span>
       </button>
     </div>
